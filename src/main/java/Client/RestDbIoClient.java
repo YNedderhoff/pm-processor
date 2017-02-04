@@ -4,16 +4,16 @@ import Domain.Config;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
-import java.util.logging.Logger;
 
 /**
  * Created by ynedderhoff on 04.02.17.
  */
 public class RestDbIoClient {
 
-    private static final Logger LOG = Logger.getLogger(RestDbIoClient.class.getName());
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(RestDbIoClient.class);
 
     public Optional<HttpResponse> getAll(Config config) {
         try {
@@ -22,7 +22,7 @@ public class RestDbIoClient {
                     .header("cache-control", "no-cache")
                     .asString());
         } catch (UnirestException e) {
-            LOG.warning("Error sending GET request to restdb.io: " + e);
+            LOG.warn("Error sending GET request to restdb.io: " + e);
             return Optional.empty();
         }
     }
@@ -36,7 +36,7 @@ public class RestDbIoClient {
                     .body(body)
                     .asString());
         } catch (UnirestException e) {
-            LOG.warning("Error sending POST request to restdb.io: " + e);
+            LOG.warn("Error sending POST request to restdb.io: " + e);
             return Optional.empty();
         }
     }
@@ -50,7 +50,7 @@ public class RestDbIoClient {
                     .body(body)
                     .asString());
         } catch (UnirestException e) {
-            LOG.warning("Error sending PUT request to restdb.io: " + e);
+            LOG.warn("Error sending PUT request to restdb.io: " + e);
             return Optional.empty();
         }
     }
@@ -63,7 +63,7 @@ public class RestDbIoClient {
                     .header("cache-control", "no-cache")
                     .asString());
         } catch (UnirestException e) {
-            LOG.warning("Error sending DELETE request to restdb.io: " + e);
+            LOG.warn("Error sending DELETE request to restdb.io: " + e);
             return Optional.empty();
         }
     }
