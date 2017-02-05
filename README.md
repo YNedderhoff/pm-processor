@@ -1,9 +1,10 @@
 # Get started with pm-processor
 
 Run
-
-`nohup java [-Dlog.level=<log.level>] -jar pm-processor-1.0-SNAPSHOT-jar-with-dependencies.jar "<path/to/config.json>" "<periodBetweenExecutionsInMinutes>" &
-`
+```
+mvn clean install
+nohup java [-Dlog.level=<log.level>] -jar </path/to/jar-with-dependencies> "<path/to/config.json>" "<periodBetweenExecutionsInMinutes>" &
+```
 
 For Example:
 
