@@ -19,7 +19,7 @@ public class ConfigHelper {
         try {
             return OBJECT_MAPPER.readValue(new File(configJsonPath), Config.class);
         } catch (IOException e) {
-            LOG.error("Something went wrong while reading the config.json.");
+            LOG.error("Something went wrong while reading the config.json: " + e);
             throw e;
         }
 
