@@ -1,7 +1,8 @@
+The related DockerHub repository of this is https://hub.docker.com/r/ynedderhoff/pm-processor/
+
 # Build and run:
 
 ```
-docker build -t ynedderhoff/pm-processor .
 docker run -d -v /local/path/to/config.json:/code/config.json:/code/config.json -v //local/path/to/logs/:/code/logs/ ynedderhoff/pm-processor "-Dlog.level=<log-level>" "config.json" "<interval-in-minutes>"
 
 ```
