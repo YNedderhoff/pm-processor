@@ -1,12 +1,21 @@
-# Get started with pm-processor
+# Build and run:
 
-Run
 ```
-mvn clean install
-nohup java [-Dlog.level=<log.level>] -jar </path/to/jar-with-dependencies> "<path/to/config.json>" "<periodBetweenExecutionsInMinutes>" &
+docker build -t ynedderhoff/pm-processor .
+docker run -d -v /local/path/to/config.json:/code/config.json:/code/config.json -v //local/path/to/logs/:/code/logs/ ynedderhoff/pm-processor "-Dlog.level=<log-level>" "config.json" "<interval-in-minutes>"
+
 ```
 
-For Example:
+# Access running docker container:
 
-`nohup java -Dlog.level=DEBUG -jar pm-processor-1.0-SNAPSHOT-jar-with-dependencies.jar "config.json" "15" &
-`
+```
+docker exec -i -t <container-name> /bin/bash
+```
+
+# Stop running docker instances:
+
+```
+docker stop $(docker ps -a -q)
+```
+
+
