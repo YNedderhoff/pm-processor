@@ -16,7 +16,6 @@ ADD src /code/src
 RUN ["mvn", "package"]
 
 ADD start.sh /code/start.sh
-ADD stop.sh /code/stop.sh
 
 ENTRYPOINT ["/bin/bash","start.sh"]
 CMD ["-Dlog.level=DEBUG" "config.json" "15"]
