@@ -15,6 +15,9 @@ RUN ["mvn", "verify"]
 ADD src /code/src
 RUN ["mvn", "package"]
 
-#ENTRYPOINT ["/usr/lib/jvm/java-8-openjdk-amd64/bin/java", "-jar", "target/pm-processor-1.0-SNAPSHOT-jar-with-dependencies.jar"]
-#CMD ["config.json" "15"]
+ADD start.sh /code/start.sh
+ADD stop.sh /code/stop.sh
+
+ENTRYPOINT ["/bin/bash","start.sh"]
+CMD ["-Dlog.level=DEBUG" "config.json" "15"]
 
