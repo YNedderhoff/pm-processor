@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 /**
  * Created by ynedderhoff on 04.02.17.

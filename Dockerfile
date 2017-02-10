@@ -1,21 +1,23 @@
 FROM java:8
+MAINTAINER Yanick Nedderhoff <yanicknedderhoff@gmail.com>
 
 # Install maven
 RUN apt-get update
-RUN apt-get install -y maven
+RUN apt-get install -y maven --no-install-recommends
+RUN apt-get clean
 
 WORKDIR /code
 
 # Prepare by downloading dependencies
-ADD pom.xml /code/pom.xml
+COPY pom.xml /code/pom.xml
 RUN ["mvn", "dependency:resolve"]
 RUN ["mvn", "verify"]
 
 # Adding source, compile and package into a fat jar
-ADD src /code/src
+COPY src /code/src
 RUN ["mvn", "package"]
 
-ADD start.sh /code/start.sh
+COPY start.sh /code/start.sh
 
 ENTRYPOINT ["/bin/bash","start.sh"]
 CMD ["-Dlog.level=DEBUG" "config.json" "15"]

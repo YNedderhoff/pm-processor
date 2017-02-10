@@ -1,6 +1,6 @@
-package Client;
+package client;
 
-import Domain.Config;
+import domain.Config;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;

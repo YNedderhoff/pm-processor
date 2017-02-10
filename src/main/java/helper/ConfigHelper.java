@@ -1,6 +1,6 @@
-package Helper;
+package helper;
 
-import Domain.Config;
+import domain.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.LoggerFactory;
 

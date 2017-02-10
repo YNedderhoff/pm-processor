@@ -1,6 +1,8 @@
-import Client.RestDbIoClient;
-import Domain.Config;
-import Helper.ConfigHelper;
+package main;
+
+import client.RestDbIoClient;
+import domain.Config;
+import helper.ConfigHelper;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
