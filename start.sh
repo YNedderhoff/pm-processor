@@ -1,2 +1,2 @@
 #!/bin/bash
-exec $JAVA_HOME $1 -jar target/pm-processor-1.0-SNAPSHOT-jar-with-dependencies.jar $2 $3
+exec $JAVA_HOME/bin/java $1 -jar target/pm-processor-1.0-SNAPSHOT-jar-with-dependencies.jar $2 $3
