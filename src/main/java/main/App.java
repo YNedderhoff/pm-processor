@@ -4,10 +4,13 @@ import client.RestDbIoClient;
 import domain.Config;
 import helper.ConfigHelper;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import helper.TimeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -24,13 +27,19 @@ public class App {
 
     public static void main(String[] args) throws IOException, UnirestException {
         String configJsonPath = args[0];
-        int periodBetweenExecutions = Integer.parseInt(args[1]);
-        run(configJsonPath, periodBetweenExecutions);
+        int periodBetweenExecutionsInMinutes = Integer.parseInt(args[1]);
+        run(configJsonPath, periodBetweenExecutionsInMinutes);
     }
 
     private static void run(String configJsonPath, int periodBetweenExecutions) throws IOException {
         final Config config = ConfigHelper.getConfig(configJsonPath);
-        executor.scheduleAtFixedRate(() -> getAll(config), 0, periodBetweenExecutions, TimeUnit.MINUTES);
+
+        executor.scheduleAtFixedRate(
+                () -> getAll(config),
+                TimeHelper.getDuration(ZonedDateTime.now(), ChronoField.MINUTE_OF_HOUR, periodBetweenExecutions),
+                periodBetweenExecutions,
+                TimeUnit.MINUTES
+        );
     }
 
     private static void getAll(Config config) {
