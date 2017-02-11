@@ -27,6 +27,6 @@ public class TimeHelper {
                 input.plus(roundIncrement - r, roundTo.getBaseUnit())
                         .truncatedTo(roundTo.getBaseUnit());
 
-        return Duration.between(input, ceiling).getNano();
+        return Duration.between(input, ceiling).getSeconds();
     }
 }

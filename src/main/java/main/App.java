@@ -1,9 +1,9 @@
 package main;
 
 import client.RestDbIoClient;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import domain.Config;
 import helper.ConfigHelper;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import helper.TimeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,13 +31,18 @@ public class App {
         run(configJsonPath, periodBetweenExecutionsInMinutes);
     }
 
-    private static void run(String configJsonPath, int periodBetweenExecutions) throws IOException {
+    private static void run(String configJsonPath, int periodBetweenExecutionsInMinutes) throws IOException {
         final Config config = ConfigHelper.getConfig(configJsonPath);
+        long timeToWait = TimeHelper
+                .getDuration(ZonedDateTime.now(), ChronoField.MINUTE_OF_HOUR, periodBetweenExecutionsInMinutes);
+
+        LOG.info("First request will be at " + ZonedDateTime.now().plusSeconds(timeToWait) +
+                ". Another request is following every " + periodBetweenExecutionsInMinutes + " minutes.");
 
         executor.scheduleAtFixedRate(
                 () -> getAll(config),
-                TimeHelper.getDuration(ZonedDateTime.now(), ChronoField.MINUTE_OF_HOUR, periodBetweenExecutions),
-                periodBetweenExecutions,
+                timeToWait,
+                periodBetweenExecutionsInMinutes,
                 TimeUnit.MINUTES
         );
     }
