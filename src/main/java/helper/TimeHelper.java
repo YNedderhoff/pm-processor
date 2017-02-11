@@ -18,8 +18,7 @@ public class TimeHelper {
 
     public static long getTimeToWait(int intervalInMinutes) {
         ZonedDateTime now = ZonedDateTime.now();
-        long timeToWait = TimeHelper
-                .getDuration(now, ChronoField.MINUTE_OF_HOUR, intervalInMinutes);
+        long timeToWait = getDuration(now, ChronoField.MINUTE_OF_HOUR, intervalInMinutes);
         LOG.info("Waiting until " + simplifyZonedDateTime(now, timeToWait) +
                 ". The following interval is " + intervalInMinutes + " minutes.");
         return timeToWait;

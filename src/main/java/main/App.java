@@ -36,8 +36,8 @@ public class App {
         executor.scheduleAtFixedRate(
                 () -> getAll(config),
                 getTimeToWait(intervallInMinutes),
-                intervallInMinutes,
-                TimeUnit.MINUTES
+                TimeUnit.MINUTES.toSeconds(intervallInMinutes),
+                TimeUnit.SECONDS
         );
     }
 
