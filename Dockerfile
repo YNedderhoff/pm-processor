@@ -1,4 +1,4 @@
-FROM dordoka/rpi-java8
+FROM dordoka/rpi-java8:jre-1.8.0
 MAINTAINER Yanick Nedderhoff <yanicknedderhoff@gmail.com>
 
 # Set the timezone.
