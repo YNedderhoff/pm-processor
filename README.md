@@ -16,10 +16,4 @@ docker run -d -v /local/path/to/config.json:/code/config.json:/code/config.json 
 docker exec -i -t <container-name> /bin/bash
 ```
 
-## Stop running docker instances
-
-```
-docker stop $(docker ps -a -q)
-```
-
 
