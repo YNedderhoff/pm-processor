@@ -6,7 +6,7 @@ The related DockerHub repository of this is https://hub.docker.com/r/ynedderhoff
 ## Run
 
 ```
-docker run -d -v /local/path/to/config.json:/code/config.json:/code/config.json -v //local/path/to/logs/:/code/logs/ ynedderhoff/pm-processor "-Dlog.level=<log-level>" "config.json" "<interval-in-minutes>"
+docker run -d -v /local/path/to/config.json:/code/config.json -v /local/path/to/logs/:/code/logs/ ynedderhoff/pm-processor "-Dlog.level=<log-level>" "config.json" "<interval-in-minutes>"
 
 ```
 
